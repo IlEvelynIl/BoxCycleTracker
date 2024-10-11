@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Box Cycle Tracker</title>
+        <link rel="stylesheet" href="./style.css">
+	    <!-- Shoutout to TailsCanFly for the box location screenshots! -->
+    </head>
+
+    <body>
+        <div class="cycle-tech-info">
+            <h1>Box Cycle Tracker</h1>
+            <p>Track your box cycle with ease!</p>
+            <button class="normal-button" id="dismiss-button">Dismiss</button>
+        </div>
+
+        <h1 id="map-name">Select Map</h1>
+        <div id="toolbar">
+            <h3>TIP: You can right click a location to mark it as skipped.</h3>
+            <button class="normal-button" id="back-button">Back</button>
+            <button class="normal-button" id="show-prev-button">Show Prev Cycles</button>
+            <button class="normal-button" id="reset-cycle-button">Reset Cycle</button>
+        </div>
+        
+        <div class="map-selector"></div>
+        <div class="location-tracker"></div>
+
+        <div class="prev-cycles">
+            <h1>Previously Tracked Cycles</h1>
+            <button class="normal-button" id="close-button">Close</button>
+            <div id="prev-cycles" class="prev-box-locations"></div>
+        </div>
+    </body>
+
+    <script src="./tracker.js"></script>
+    <script src="./map-selector.js"></script>
+    <script src="./locations.js"></script>
+    <script src="./cycle-frontend.js"></script>
+</html>

@@ -91,6 +91,7 @@ button {
 }
 
 .map-button {
+    position: relative;
     padding: 1px;
     margin-left: 5px;
     margin-top: 5px;
@@ -113,8 +114,8 @@ button {
     height: 170px;
 }
 
-.map-button p {
-    margin-top: 12px;
+.location-name {
+    margin-top: 25px;
 }
 
 .map-button.skip-tracked {
@@ -133,4 +134,16 @@ button {
 .map-selector {
     text-align: center;
     margin-top: 15px;
+}
+
+.location-num {
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    margin-top: -35px;
+    background-color: rgba(0, 0, 0, 0.700);
+    padding: 5px 5px;
+    text-shadow: none;
+    visibility: hidden;
 }

@@ -32,7 +32,7 @@ const AddToCycle = (location, skip) => {
     let element = GetLocElement(location);
 
     // frontend
-    UpdateCycleFrontend(element, skip);
+    UpdateCycleFrontend(element, location, skip);
 
     // new cycle
     if (currentCycle.length >= boxLocations.length)
@@ -66,7 +66,7 @@ const RemoveFromCycle = (location, element) => {
         }
     }
 
-    UpdateCycleFrontend(element, false);
+    UpdateCycleFrontend(element, location, false);
 }
 
 const IsLocationTracked = (location) => {

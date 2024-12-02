@@ -9,13 +9,34 @@ document.getElementById("show-prev-button").addEventListener("click", () => Show
 // reset current cycle
 document.getElementById("reset-cycle-button").addEventListener("click", () => ClearCurrentCycle());
 
-const UpdateCycleFrontend = (element, skip) => {
+const UpdateCycleFrontend = (element, location, skip) => {
     let IsTracked = hasClass(element, "tracked") || hasClass(element, "skip-tracked");
+    location = location.replace(" (skipped)", '');
 
     if (IsTracked) {
         RemoveTracked(element);
+        document.getElementById(`${location}-location-num`).style.visibility = "hidden";
     } else {
         AddTracked(element, skip);
+        document.getElementById(`${location}-location-num`).style.visibility = "visible";
+    }
+
+    UpdateLocationNums();
+}
+
+const UpdateLocationNums = () => {
+    let mapLocations = GetLocations(currentMap);
+
+    for (let i = 0; i < mapLocations.length; i++) {
+        let mapLocation = mapLocations[i];
+        let cycleLocation = currentCycle[i];
+        let locationIndex = currentCycle.indexOf(cycleLocation);
+
+        if (locationIndex > -1) {
+            document.getElementById(`${mapLocation}-location-num`).innerText = locationIndex + 1;
+        } else {
+            document.getElementById(`${mapLocation}-location-num`).style.visibility = "hidden";
+        }
     }
 }
 
@@ -24,6 +45,7 @@ const ClearFrontendCycle = () => {
     for (let i = 0; i < trackerItems.length; i++) {
         RemoveTracked(trackerItems[i]);
     }
+    UpdateLocationNums();
 }
 
 const AddPrevCycle = (cycle) => {
@@ -31,6 +53,7 @@ const AddPrevCycle = (cycle) => {
     cycle.forEach(boxLocation => {
         const skipped = boxLocation.includes(" (skipped)");
         let color = "rgb(6, 161, 71)";
+        let index = cycle.indexOf(boxLocation) + 1;
 
         if (skipped) {
             color = "rgb(133, 3, 3)";
@@ -38,8 +61,9 @@ const AddPrevCycle = (cycle) => {
 
         let imageName = boxLocation.replace(" (skipped)", '');
 
-        let locationButton = `<button class="map-button" style="background-color: ${color}" id="${boxLocation}">
+        let locationButton = `<button class="map-button" style="background-color: ${color}">
                                     <img src="./img/maps/${currentMap}/${imageName}.webp">
+                                    <p class="location-num" style="visibility: visible; position: absolute; width: 20px; height: 20px;">${index}</p>
                                     <p style="margin-top: 3px;">${boxLocation}</p>
                                 </button>`;
         locationDiv += `${locationButton}`;

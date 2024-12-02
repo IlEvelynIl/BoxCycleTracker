@@ -57,7 +57,8 @@ const SelectMap = (map) => {
     mapLocations.forEach(boxLocation => {
         let button = `<button class="map-button" id="${boxLocation}" onclick="AddToCycle('${boxLocation}', false)" oncontextmenu="AddToCycle('${boxLocation}', true); return false;">
                         <img src="./img/maps/${map}/${boxLocation}.webp">
-                        <p>${boxLocation}</p>
+                        <p id="${boxLocation}-location-num" class="location-num"></p>
+                        <p class="location-name">${boxLocation}</p>
                       </button>`;
         document.querySelector(".location-tracker").innerHTML += button;
     });
